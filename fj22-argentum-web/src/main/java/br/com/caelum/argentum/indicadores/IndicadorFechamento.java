@@ -1,8 +1,11 @@
-package br.com.caelum.argentum.modelo.indicadores;
+package br.com.caelum.argentum.indicadores;
 
 import br.com.caelum.argentum.modelo.SerieTemporal;
 
 public class IndicadorFechamento implements Indicador {
+
+	public IndicadorFechamento() {
+	}
 
 	@Override
 	public double calcula(int posicao, SerieTemporal serie) {

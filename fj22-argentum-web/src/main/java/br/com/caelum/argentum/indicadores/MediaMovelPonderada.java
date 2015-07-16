@@ -1,4 +1,4 @@
-package br.com.caelum.argentum.modelo.indicadores;
+package br.com.caelum.argentum.indicadores;
 
 import br.com.caelum.argentum.modelo.Candle;
 import br.com.caelum.argentum.modelo.SerieTemporal;
@@ -6,9 +6,14 @@ import br.com.caelum.argentum.modelo.SerieTemporal;
 public class MediaMovelPonderada implements Indicador {
 
 	private int intervalo;
+	private Indicador outroIndicador;
 
-	public MediaMovelPonderada(int intervalo) {
+	public MediaMovelPonderada() {
+	}
+
+	public MediaMovelPonderada(int intervalo, Indicador outroIndicador) {
 		this.intervalo = intervalo;
+		this.outroIndicador = outroIndicador;
 	}
 
 	@Override
@@ -20,7 +25,7 @@ public class MediaMovelPonderada implements Indicador {
 
 		for (int i = posicao; i > posicao - intervalo; i--) {
 			Candle c = serie.getCandle(i);
-			soma += c.getFechamento() * peso;
+			soma += outroIndicador.calcula(i, serie);
 			peso--;
 			pesoTotal += peso;
 		}

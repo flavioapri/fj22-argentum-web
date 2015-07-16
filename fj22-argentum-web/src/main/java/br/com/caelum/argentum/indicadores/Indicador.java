@@ -1,4 +1,4 @@
-package br.com.caelum.argentum.modelo.indicadores;
+package br.com.caelum.argentum.indicadores;
 
 import br.com.caelum.argentum.modelo.SerieTemporal;
 

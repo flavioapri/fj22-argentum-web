@@ -4,8 +4,8 @@ import org.primefaces.model.chart.ChartModel;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
+import br.com.caelum.argentum.indicadores.Indicador;
 import br.com.caelum.argentum.modelo.SerieTemporal;
-import br.com.caelum.argentum.modelo.indicadores.Indicador;
 
 public class GeradorModeloGrafico {
 
@@ -13,12 +13,14 @@ public class GeradorModeloGrafico {
 	private int fim;
 	private int comeco;
 	private SerieTemporal serie;
+	private String tituloGrafico;
 
-	public GeradorModeloGrafico(SerieTemporal serie, int comeco, int fim) {
+	public GeradorModeloGrafico(SerieTemporal serie, int comeco, int fim, String tituloGrafico) {
 		this.serie = serie;
 		this.comeco = comeco;
 		this.fim = fim;
 		this.modeloGrafico = new LineChartModel();
+		this.tituloGrafico = tituloGrafico;
 	}
 
 	public void plotaIndicador(Indicador indicador) {
@@ -30,7 +32,7 @@ public class GeradorModeloGrafico {
 		}
 		this.modeloGrafico.addSeries(chartSerie);
 		this.modeloGrafico.setLegendPosition("w");
-		this.modeloGrafico.setTitle("Indicadores");
+		this.modeloGrafico.setTitle(tituloGrafico);
 	}
 
 	public ChartModel getModeloGrafico() {

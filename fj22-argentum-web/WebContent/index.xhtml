@@ -9,7 +9,29 @@
 	<title>Argentum Web</title>
 </h:head>
 <h:body>
-<p:chart type="line" model="#{argentumBean.modeloGrafico}"/>
+
+	<h:form id="dadosGrafico">
+	<p:messages autoUpdate="true" />
+		<h:panelGrid columns="6">
+			<h:outputLabel value="Título Gráfico: " />
+			<p:inputText id="titulo" value="#{argentumBean.titulo}"
+				required="true" />
+			<h:outputLabel value="Media Móvel: " />
+			<p:selectOneButton value="#{argentumBean.nomeMedia}">
+				<f:selectItem itemLabel="Simples" itemValue="MediaMovelSimples" />
+				<f:selectItem itemLabel="Ponderada" itemValue="MediaMovelPonderada" />
+			</p:selectOneButton>
+			<h:outputLabel value="Indicador base: " />
+			<p:selectOneButton value="#{argentumBean.nomeIndicadorBase}">
+				<f:selectItem itemLabel="Abertura" itemValue="IndicadorAbertura" />
+				<f:selectItem itemLabel="Fechamento" itemValue="IndicadorFechamento" />
+			</p:selectOneButton>
+			<p:commandButton value="Gerar gráfico" update=":grafico"
+				action="#{argentumBean.geraGrafico}" />
+		</h:panelGrid>
+	</h:form>
+
+	<p:chart id="grafico" type="line" model="#{argentumBean.modeloGrafico}" />
 	<h:form id="listaNegociacao">
 		<p:dataTable var="negociacao" value="#{argentumBean.negociacoes}"
 			paginator="true" rows="15">
@@ -29,5 +51,6 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
+
 </h:body>
 </html>
